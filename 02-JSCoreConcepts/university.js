@@ -2,10 +2,16 @@ names = ['Piotr', 'Anna', 'Michał', 'Paulina', 'Mateusz', 'Magda'];
 
 class Students {
     constructor(names) {
-        // ...
+        this.names = names
     }
 
     startWith(letter){
+        let result = []
+
+        names.forEach(element => {
+            if (name.charAt(0) === letter) result.push(element);
+        });
+
         return // names (array) which starts with the letter
     }
 
