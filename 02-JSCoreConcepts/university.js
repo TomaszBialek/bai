@@ -6,25 +6,28 @@ class Students {
     }
 
     startWith(letter){
-        let result = []
+        let result = new Students([...this.names.filter(element => element.charAt(0) === letter)])
 
-        names.forEach(element => {
-            if (name.charAt(0) === letter) result.push(element);
-        });
-
-        return // names (array) which starts with the letter
+        return result
     }
 
     sort() {
-        return // names (array) in alphabetical order 
+        let result = new Students([...this.names].sort())
+        return result
     }
 
     get() {
-        return // names (array) in natural order
+        return new Students([...this.names])
     }
 
     getFirst(n) {
-        return // get first 'n' names (array) 
+        let result = new Students([])
+
+        for(let i = 0; i < n; i++){
+            result.names.push(this.names[i])
+        }
+
+        return result
     }
 }
 
