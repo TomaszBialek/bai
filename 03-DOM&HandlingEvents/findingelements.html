@@ -6,12 +6,20 @@
 
 <body>
     <h1>Finding elements in DOM</h1>
-    <p id="someTest">Find an element by element id</p>
+    <p id="someText">Find an element by element id</p>
     <p class="important">Find elements by class name</p>
-    <p>Find elements by tag name</p>
+    <p class="tag">Find elements by tag name</p>
 
     <script>
-        // a JavaScript code here ...
+        console.log(document.getElementsByTagName("h1")[0].textContent)
+        console.log(document.getElementById("someText").textContent)
+        console.log(document.getElementsByClassName("important")[0].textContent)
+
+        let paragraphs = document.getElementsByTagName("p")
+
+        for(let i = 0; i < paragraphs.length; i++){
+            console.log(paragraphs[i].textContent)
+        }
 
     </script>
 </body>
