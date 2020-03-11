@@ -7,7 +7,7 @@
 	<body>
 		<h1>How fast are your fingers?</h1>
 		<h3>You have 30 seconds. Just start typing...</h3>
-		<p oninput="setTimeout(stopper, 1000)">Nam strzelać nie kazano. - Wstąpiłem na działo<br>
+		<p>Nam strzelać nie kazano. - Wstąpiłem na działo<br>
 		I spójrzałem na pole; dwieście armat grzmiało.<br>
 		Artyleryi ruskiej ciągną się szeregi,<br>
 		Prosto, długo, daleko, jako morza brzegi;<br>
@@ -20,11 +20,40 @@
 		Przeciw nim sterczy biała, wąska, zaostrzona,<br>
 		Jak głaz bodzący morze, reduta Ordona.</p>
 		
-		<textarea rows="15" cols="50"></textarea><br>
+		<textarea rows="15" cols="50" oninput="test(this)"></textarea><br>
 		
 		<script>
-			function stopper() {
+			const timeout = 30000
 
+			function init() {
+				document.getElementsByTagName("textarea")[0].value = "";
+			}
+
+			window.onload = init;
+
+			function test(element) {
+				removeListener(element)
+
+				setTimeout(function() {
+					testResult(element.value)
+					disableTextArea(element)
+				}, timeout)
+			}
+
+			function removeListener(element){
+				element.removeAttribute('oninput')
+			}
+
+			function disableTextArea(element) {
+				document.getElementsByTagName("textarea")[0].disabled = true;
+			}
+
+			function testResult(value) {
+				let result = document.createElement('p')
+
+				result.innerHTML = `Words: ${value.split(' ').length}<br>Characters: ${value.length}`
+
+				document.body.appendChild(result)
 			}
 		
 		</script>

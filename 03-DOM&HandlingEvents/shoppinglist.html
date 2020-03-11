@@ -4,13 +4,14 @@
 <head>
     <title>Shopping List</title>
     <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
     <h1>Shopping List</h1>
     <p>
-        New item: <input type="text" name="item" id="input">
-        <button type="button" onclick="addProduct()">Add</button>
+        New item: <input type="text" name="item">
+        <button type="button" id="addProduct">Add</button>
     </p>
     <h3>List of items</h3>
     <ol id = "products">
@@ -20,16 +21,27 @@
     </ol>
 
     <script>
-        function addProduct() {
-            let text = document.getElementById("input").value
 
-            let products = document.getElementById("products")
+        let $item = $('input[name="item"]')
+        let $products = $('#products')
 
-            let newLi = document.createElement("li")
-            newLi.innerHTML = text
+        $(document).ready(function(){
 
-            products.appendChild(newLi)
-        }
+            let remove = function () { $(this).remove() };
+
+            $('#addProduct').click(function(){
+                let $newLi = $('<li></li>')
+                $newLi.text($item.val())
+                $newLi.dblclick(remove);
+                $products.append($newLi)
+            })
+
+            $('li').dblclick(remove);
+
+        });
+
+
+
     </script>
 </body>
 

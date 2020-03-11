@@ -3,11 +3,25 @@
 	<head>
 		<title>Create DOM elements</title>
 		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="node.css">
 	</head>
 	<body>
 		<script>
-			// a JavaScript code here ...
-			
+			let table = document.createElement('table');
+			let row0 = table.insertRow(0);
+			let row1 = table.insertRow(1);
+
+			let cell1 = row0.insertCell(0);
+			let cell2 = row0.insertCell(1);
+			let cell3 = row1.insertCell(0);
+			let cell4 = row1.insertCell(1);
+
+			cell1.textContent = "1";
+			cell2.textContent = "2"
+			cell3.textContent = "3"
+			cell4.textContent = "4"
+
+			document.body.appendChild(table);
 		</script>
 	</body>
 </html>
