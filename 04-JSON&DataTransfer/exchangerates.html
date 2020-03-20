@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Exchange rates</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>Exchange rates</h1>
+		
+		<script>
+			const currencies = ['EUR', 'USD', 'GBP']
+			var method = 'GET';
+
+			currencies.forEach(currency => {
+				var URL = `http://api.nbp.pl/api/exchangerates/rates/a/${currency}/`
+				var xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = function(){
+					if(this.readyState == 4 && this.status == 200)
+					{
+						const parsed = JSON.parse(xhr.responseText)
+						console.log(parsed)
+						let p = document.createElement("p")
+						p.textContent = `${parsed.currency} (${parsed.code}) => ${parsed.rates[0].mid}`
+						document.body.appendChild(p)
+					}
+				};
+				xhr.open(method, URL);
+				xhr.send();
+			});
+
+		</script>
+
+	</body>
+</html>

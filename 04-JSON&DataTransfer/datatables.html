@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Using framework</title>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+</head>
+
+<body>
+    <table id="table" class="display" style="width:100%">
+        
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Age</th>
+                <th>Country</th>
+                <th>E-mail</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Age</th>
+                <th>Country</th>
+                <th>E-mail</th>
+            </tr>
+        </tfoot>
+    </table>
+
+    <script>
+        const table = document.getElementById("table")
+        const tbody = document.getElementsByTagName("tbody")[0]
+
+        function createRowData(data) {
+
+            const tr = document.createElement("tr")
+            
+            createCellData(tr, data.name)
+            createCellData(tr, data.surname)
+            createCellData(tr, data.age)
+            createCellData(tr, data.country)
+            createCellData(tr, data.email)
+
+            return tr
+        }
+
+        function createCellData(tr, cellData){
+            let td = document.createElement("td")
+            td.textContent = cellData
+            tr.appendChild(td)
+        }
+
+        const request = new XMLHttpRequest()
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == 200) {
+                const people = JSON.parse(this.responseText)
+                
+                people.forEach(person => {
+                    let row = createRowData(person)
+                    tbody.appendChild(row)
+                });
+
+                $(document).ready(function () {
+                    $('#table').DataTable();
+                });
+            }
+        };
+
+        request.open("GET", "people.json")
+        request.send()
+
+    </script>
+</body>
+
+</html>

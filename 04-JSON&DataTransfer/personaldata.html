@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Personal data</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <input type="button" value="Personal data" onclick="getData()">
+    <ol></ol>
+
+    <script>
+        function getData()
+        {
+            request.open("GET", "people.json");
+            request.send();
+        }
+
+        const request = new XMLHttpRequest();
+        const ol = document.getElementsByTagName("ol")[0];
+
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == 200) {
+                const people = JSON.parse(this.responseText);
+
+                people.forEach(person => {
+                    const li = document.createElement("li")
+                    li.textContent = `${person.name} ${person.surname.toUpperCase()}, ${person.country}`
+                    ol.appendChild(li)
+                });
+            }
+        };
+
+    </script>
+</body>
+
+</html>
