@@ -4,7 +4,11 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-  <h1>Address</h1>    
+  <div id="app">
+    {{fullName}}<br>
+    {{address}}<br>
+    {{fullCity}}</br>  
+  </div>
 
   <script>
     var app = new Vue({
@@ -15,6 +19,14 @@
         address: 'ul. Beskidzka 38',
         postcode: '23-908',
         city: 'Stalowa Wola'
+      },
+      computed: {
+        fullName: function() {
+          return `${this.name} ${this.surname}`
+        },
+        fullCity: function() {
+          return `${this.postcode} ${this.city}`
+        }
       }
     });
   </script>

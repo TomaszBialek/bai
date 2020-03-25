@@ -2,8 +2,42 @@
 <html>
 <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style type="text/css">
+      table 
+      {
+          height: 120px;
+          width: 300px;
+          border-collapse: collapse;
+          table-layout:fixed;
+      }
+
+      td 
+      {
+          text-align:center
+      }
+      
+      table, th, td
+      {
+          border: 1px solid black;
+      }
+    </style>
 </head>
 <body>
+
+  <div id="app">
+
+    <table>
+        <td>
+          <b>{{companyUpperCase}}</b><br>
+          {{address}}<br>
+          {{fullCity}}<br>
+          {{phones}}<br>
+          <a :href="web">{{web}}</a>
+        </td>
+    </table>
+
+  </div>
+
   <script>
     var app = new Vue({
       el: '#app',
@@ -15,6 +49,17 @@
         landline: '22 345 90 21',
         mobile: '888 213 992',
         web: 'http://www.unikpol.pl'
+      },
+      computed: {
+        companyUpperCase: function() {
+          return this.company.toUpperCase()
+        },
+        fullCity: function() {
+          return `${this.postcode} ${this.city}`
+        },
+        phones: function() {
+          return `tel. ${this.landline}, ${this.mobile}`
+        }
       }
     });
   </script>
