@@ -4,17 +4,40 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+
+  <div id="app">
+
+    <div v-for="person in people">
+      <b>EMPLOYEE RECORD</b><br>
+      Name 1: {{person.name1}}<br>
+      <div v-if="person.name2">Name 2: {{person.name2}}</div>
+      Surname: {{person.surname}}<br>
+      <div v-if="!person.foreigner">Pesel: {{person.pesel}}</div>
+      <div v-else>Nationality: {{person.nationality}}</div>
+      Address: {{person.address}}
+    </div>
+
+  </div>
+
   <script>
     var app = new Vue({
       el: '#app',
       data: {
-        name1: 'Adam',
-        name2: 'Jan',
-        surname: 'Majewski',
-        foreigner: false,
-        nationality: 'Polish',
-        pesel: '92021708229',
-        address: 'ul. Szeroka 3, Kraków',
+        people: [
+        { name1: 'Adam',
+          name2: 'Jan',
+          surname: 'Majewski',
+          foreigner: false,
+          nationality: 'Polish',
+          pesel: '92021708229',
+          address: 'ul. Szeroka 3, Kraków'},
+        { name1: 'John',
+          surname: 'Brown',
+          foreigner: true,
+          nationality: 'USA',
+          address: 'Holland Drive 4, Chicago'}
+        ]
+      }
     });
   </script>
 

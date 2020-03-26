@@ -4,6 +4,24 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+
+
+  <div id="app">
+
+    DO WYKONANIA<br>
+    <div v-for="(thing, index) in todo">
+        {{index}}. {{thing}}
+    </div>
+
+    <br><br>
+    DO WYKONANIA - ORDERED<br>
+    <div v-for="(thing, index) in sortedToDo">
+      {{index}}. {{thing}}
+    </div>
+
+  </div>
+
+
   <script>
     var app = new Vue({
       el: '#app',
@@ -13,6 +31,11 @@
           'Feed cat',
           'Pay cable bill',
           'Go shopping'
+      ]},
+      computed: {
+        sortedToDo () {
+          return [...this.todo].sort()
+        }
       }
     });
   </script>

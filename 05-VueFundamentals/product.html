@@ -44,7 +44,7 @@
           return this.roundedUnitPrice() * this.product.quantity
         },
         calculateTotal: function(){
-          return this.calculateAmount() * 1.23
+          return this.calculateAmount() * (1 + this.product.VAT/100)
         }
       }
     });
