@@ -2,8 +2,12 @@
 <html>
 <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
 <body>
+
+  <canvas></canvas>
+
   <script>
     var app = new Vue({
       el: '#app',
@@ -30,8 +34,79 @@
             popularity: 7.37
           }
         ] 
+      },
+      computed: {
+        getLanguages: function (){
+          var languages = []
+          for(var i = 0; i < this.films.length; i++){
+            languages[i] = this.films[i].language
+          }
+          return languages
+        },
+
+        getPopularities: function(){
+          var poplarities = []
+          for(var i = 0; i < this.films.length; i++){
+            poplarities[i] = this.films[i].popularity
+          }
+          return poplarities
+        }
       }
     });
+
+    var randomColorGenerator = function () { 
+      var colors = []
+      for(var i = 0; i < app.getLanguages.length; i++){
+        colors[i] = '#' + (Math.random().toString(16) + '0000000').slice(2, 8); 
+      }
+      return colors
+    };
+
+    var canvas = document.getElementsByTagName('canvas')[0]
+    var myChart = new Chart(canvas, {
+        type: 'horizontalBar',
+        data: {
+            labels: app.getLanguages,
+            datasets: [{
+                label: 'Language Popularity',
+                data: app.getPopularities,
+                backgroundColor: randomColorGenerator()
+            }]
+        },
+        options: {
+		responsive: true,
+		title: {
+			display: true,
+			text: 'Chart Task'
+		},
+		tooltips: {
+			mode: 'index',
+			intersect: false,
+		},
+		hover: {
+			mode: 'nearest',
+			intersect: true
+		},
+		scales: {
+			xAxes: [{
+				display: true,
+				scaleLabel: {
+					display: true,
+					labelString: 'Popularity'
+				}
+			}],
+			yAxes: [{
+				display: true,
+				scaleLabel: {
+					display: true,
+					labelString: 'Language'
+				}
+			}]
+		}
+	}});
+
+  document.body.appendChild(canvas)
+
   </script>
 </body>
 </html>
