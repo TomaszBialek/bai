@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style type="text/css">
+        table 
+        {
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+  
+        td
+        {
+            text-align:left;
+            width: 50%;
+        }
+        
+        table, th, td
+        {
+            border: 1px solid black;
+        }
+      </style>
+</head>
+<body>
+  <div id="app">
+    <form>
+        <table>
+          <tr>
+              <th>Name</th>
+              <th>Value</th>
+          </tr>
+          <tr>
+            <td>Title</td>
+            <td><input type="text" v-model="title"></td>
+          </tr>
+          <tr>
+            <td>Author Name</td>
+            <td><input type="text" v-model="authorName"></td>
+          </tr>
+          <tr>
+            <td>Author Surname</td>
+            <td><input type="text" v-model="authorSurname"></td>
+          </tr>
+          <tr>
+              <td colspan="2"><button type='button' style="width:100%" @click="getData">Zapisz</button></td>
+          </tr>
+        </table>
+    </form>
+    
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        title: '',
+        authorName: '',
+        authorSurname: ''
+      },
+      methods: {
+          getData: function(){
+              console.log(`${this.title} napisana przez ${this.authorName} ${this.authorSurname}`)
+          }
+      }
+    });
+
+
+  </script>
+
+</body>
+</html>

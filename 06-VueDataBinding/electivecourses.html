@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+
+    <input type="checkbox" id="course_1" value="Obierak 1" v-model="courses">
+    <label for="course_1">Obierak 1</label>
+    <br>
+    <input type="checkbox" id="course_2" value="Obierak 2" v-model="courses">
+    <label for="course_2">Obierak 2</label>
+    <br>
+    <input type="checkbox" id="course_3" value="Obierak 3" v-model="courses">
+    <label for="course_3">Obierak 3</label>
+    <br>
+    <input type="checkbox" id="course_4" value="Obierak 4" v-model="courses">
+    <label for="course_4">Obierak 4</label>
+    <br>
+    <input type="checkbox" id="course_5" value="Obierak 5" v-model="courses">
+    <label for="course_5">Obierak 5</label>
+
+    <p>Wybrano przedmiotów: {{coursesCounter}}</p>
+
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        courses: []
+      },
+      computed: {
+          coursesCounter: function(){
+              return this.courses.length
+          }
+      }
+    });
+
+  </script>
+
+</body>
+</html>

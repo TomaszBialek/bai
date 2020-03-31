@@ -7,14 +7,29 @@
   <div id="app">
     <span>Your name:</span>
     <input type="text" v-model="name">  
+    
   </div>
   <script>
     var app = new Vue({
       el: '#app',
       data: {
         name: ''
+      },
+      methods: {
+        showName: function(){
+          return this.name
+        },
+        changeName: function(name){
+          this.name = name
+        }
       }
     });
+
+    // console.log(app.name)
+    // app.name = 'Zbyszko'
+    // console.log(app.showName())
+    // app.changeName('Mietko')
+
   </script>
 
 </body>

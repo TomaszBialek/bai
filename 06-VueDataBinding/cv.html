@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style type="text/css">
+        table 
+        {
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+  
+        td
+        {
+            text-align:left;
+            width: 50%;
+        }
+        
+        table, th, td
+        {
+            border: 1px solid black;
+        }
+      </style>
+</head>
+<body>
+  <div id="app">
+    <form>
+        <table>
+          <tr>
+              <th>Nazwa</th>
+              <th>Wartość</th>
+          </tr>
+          <tr>
+            <td>Imię</td>
+            <td><input type="text" v-model="name"></td>
+          </tr>
+          <tr>
+            <td>Nazwisko</td>
+            <td><input type="text" v-model="surname"></td>
+          </tr>
+          <tr>
+            <td>Wiek</td>
+            <td><input v-model.number="age" type="number" min="0" ></td>
+          </tr>
+          <tr>
+            <td>Płeć</td>
+            <td>
+                <input type="radio" id="male" value="Mężczyzna" v-model="sex">
+                <label for="male">Mężczyzna</label>
+                <br>
+                <input type="radio" id="female" value="Kobieta" v-model="sex">
+                <label for="female">Kobieta</label>
+            </td>
+          </tr>
+          <tr>
+            <td>Wykształcenie</td>
+            <td>
+                <select v-model="education">
+                    <option disabled value="">Wybierz wykształcenie</option>
+                    <option>brak</option>
+                    <option>podstawowe</option>
+                    <option>średnie</option>
+                    <option>wyższe</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Umiejętności</td>
+            <td>
+              <input type="checkbox" id="skill_1" value="Obsługa komputera" v-model="skills">
+              <label for="skill_1">Obsługa komputera</label>
+              <br>
+              <input type="checkbox" id="skill_2" value="Prawo jazdy" v-model="skills">
+              <label for="skill_2">Prawo jazdy</label>
+              <br>
+              <input type="checkbox" id="skill_3" value="Kreatywność" v-model="skills">
+              <label for="skill_3">Kreatywność</label>
+              <br>
+              <input type="checkbox" id="skill_4" value="Praca w zespole" v-model="skills">
+              <label for="skill_4">Praca w zespole</label>
+            </td>
+          </tr>
+          <tr>
+              <td colspan="2"><button type='button' style="width:100%" @click="save">Zapisz</button></td>
+          </tr>
+          <tr>
+            <td colspan="2"><button type='button' style="width:100%" @click="load">Czytaj</button></td>
+        </tr>
+        </table>
+    </form>
+    
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        name: '',
+        surname: '',
+        age: 0,
+        sex: '',
+        education: '',
+        skills: [],
+      },
+      methods: {
+        save: function(){
+            if(typeof(Storage) !== "undefined") {
+                localStorage.setItem("name", this.name);
+                localStorage.setItem("surname", this.surname);
+                localStorage.setItem("age", this.age);
+                localStorage.setItem("sex", this.sex);
+                localStorage.setItem("education", this.education);
+                localStorage.setItem("skills", JSON.stringify(this.skills));
+            }
+            else{
+                let warning = document.createElement("p");
+                warning.innerHTML = "Przeglądarka nie wspiera Local Storage";
+                document.body.appendChild(warning);
+            }
+        },
+        load: function(){
+            this.name = localStorage.getItem("name");
+            this.surname = localStorage.getItem("surname");
+            this.age = localStorage.getItem("age");
+            this.sex = localStorage.getItem("sex");
+            this.education = localStorage.getItem("education");
+            this.skills = JSON.parse(localStorage.getItem("skills"));
+        }
+      }
+    });
+
+
+  </script>
+
+</body>
+</html>
