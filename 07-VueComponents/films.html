@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+  <div id="app">
+    <lemans></lemans>
+    <parasite></parasite>
+    <sicario></sicario>
+  </div>
+
+  <script>
+
+    Vue.component('lemans', {
+      data() {
+        return {
+          title: 'Le Mans \'66',
+          director: 'James Mangold',
+          year: 2019,
+          description: 'Na zlecenie Henry\'ego Forda II amerykański projektant Carroll Shelby i\
+          brytyjski kierowca Ken Miles podejmują wyzwanie pokonania samochodów ekipy Ferrari w 24-godzinnym wyścigu Le Mans.'
+        }
+      },
+      template : `
+      <div>
+        <h1>Tytuł: {{title}}</h1>
+        <span>Reżyser: {{director}}</span>
+        <br>Rok: {{year}}
+        <br>Opis: {{description}}
+      </div>
+      `
+    })
+
+    Vue.component('parasite', {
+      data() {
+        return {
+          title: 'Parasite',
+          director: 'Joon-ho Bong',
+          year: 2019,
+          description: 'Kiedy Ki-woo dostaje pracę jako korepetytor córki zamożnego małżeństwa,\
+          wymyśla sposób na zapewnienie zatrudnienia również reszcie swojej rodziny.'
+        }
+      },
+      template : `
+      <div>
+        <h1>Tytuł: {{title}}</h1>
+        <span>Reżyser: {{director}}</span>
+        <br>Rok: {{year}}
+        <br>Opis: {{description}}
+      </div>
+      `
+    })
+
+    Vue.component('sicario', {
+      data() {
+        return {
+          title: 'Sicario',
+          director: 'Denis Villeneuve',
+          year: 2015,
+          description: 'Młoda agentka FBI bierze udział w operacji zlikwidowania bossa meksykańskiego\
+          kartelu narkotykowego. Podczas misji jej moralność zostaje wystawiona na próbę.'
+        }
+      },
+      template : `
+      <div>
+        <h1>Tytuł: {{title}}</h1>
+        <span>Reżyser: {{director}}</span>
+        <br>Rok: {{year}}
+        <br>Opis: {{description}}
+      </div>
+      `
+    })
+
+
+
+    var app = new Vue({
+      el: '#app'
+    });
+
+  </script>
+
+</body>
+</html>
